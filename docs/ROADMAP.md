@@ -1,0 +1,106 @@
+# Roadmap
+
+## Product Principles
+
+- Prefer read-only wrappers before write workflows.
+- Preserve dry-run defaults for mutation planning.
+- Keep tenant data, generated artifacts, and raw browser captures out of git.
+- Add abstractions only where they reduce operator friction and match existing service patterns.
+
+## Near-Term Priorities
+
+1. Keep the public release line and one-commit public mirror stable.
+2. Maintain redacted configuration backup coverage and endpoint-catalog validation.
+3. Continue adding high-value read-only wrappers for common AttackIQ workflows.
+4. Refactor shared mutation dry-run helpers where it reduces duplication without changing
+   operator-facing behavior.
+5. Mature AIQ Assist MCP contracts before adding CLI or TUI consumption.
+6. Explore read-only TUI mutation previews that display dry-run call plans without enabling writes.
+
+## Release Stewardship
+
+Tasks:
+
+- Keep `docs/STATE.md`, `CHANGELOG.md`, release tags, and package metadata aligned.
+- Run dependency constraints, release governance, public-safety, public-mirror, quality,
+  documentation, deep-dive, and dependency-audit gates before release.
+- Keep generated packages, runtime caches, live-smoke output directories, backup artifacts, and raw
+  tenant responses outside git.
+- Keep public release guidance aligned with downstream enterprise package promotion needs.
+
+Acceptance:
+
+- Current production release status is unambiguous in `docs/STATE.md`.
+- Public-safety and quality gates pass.
+- Public mirror dry-runs pass and strict publication exports contain one commit.
+- Release notes identify validation commands without including tenant payloads.
+
+## Configuration Backup Maturity
+
+Tasks:
+
+- Keep `attackiq backup configs` read-only and redacted.
+- Expand backup domains only after endpoint discovery is sanitized, reviewed, fixture-backed, and
+  classified as backup-safe or needs-redaction.
+- Continue rejecting write-like and unsupported endpoint-catalog entries.
+- Maintain manifest requirements and retention guidance.
+
+Acceptance:
+
+- Backup artifacts contain no raw secret-like values.
+- Endpoint-catalog tests prove write-like methods cannot be enabled.
+- Operator docs keep restore/apply flows out of the first backup workflow.
+
+## Read-Only Wrapper Expansion
+
+Tasks:
+
+- Add one wrapper family at a time from existing TUI/export usage or common operator workflows.
+- Reuse existing service, pagination, timeout, TLS, auth, JSON, and CSV output patterns.
+- Document new command surfaces in `README.md` and `docs/STATE.md`.
+
+Acceptance:
+
+- New commands have focused tests for options, output formatting, redaction/error behavior, and
+  bounded pagination where applicable.
+- No write behavior is introduced in this track.
+
+## AIQ Assist MCP Integration Maturity
+
+Tasks:
+
+- Maintain `docs/AIQ_ASSIST_MCP_CONTRACT.md` as the repo-local consumer contract.
+- Capture supported auth paths, endpoint ownership, timeout behavior, fixture strategy, and
+  failure modes before user-facing commands are added.
+- Keep provider-source status validated by `scripts/check_aiq_assist_mcp_contract.py`.
+
+Acceptance:
+
+- Contract and fixture gates pass.
+- No CLI/TUI MCP command is introduced before the contract and fixture-backed test strategy are
+  stable.
+
+## TUI Dry-Run Preview Design
+
+Tasks:
+
+- Define preview scope, required inputs, call-plan display shape, and redaction behavior before
+  implementation.
+- Reuse shared dry-run helpers.
+- Keep apply-mode execution unavailable from the TUI unless a future apply-safe design is approved.
+
+Acceptance:
+
+- TUI previews show dry-run call-plan details without sending mutation requests.
+- Tests prove no write path is reachable from preview flows.
+
+## Recently Completed
+
+- Added `attackiq backup configs` for redacted configuration capture across integrations, derived
+  source types, and read-only detection-rule candidates (2026-05-22).
+- Added endpoint-catalog validation for discovered backup endpoints, including rejection of
+  write-like and unsupported domains (2026-05-22).
+- Prepared the repository for public GitHub publication and enterprise package promotion with
+  public-safety scans and wheel-content checks (2026-05-22).
+- Added a no-history public mirror dry-run/export check for the fresh public GitHub repository
+  workflow (2026-05-22).

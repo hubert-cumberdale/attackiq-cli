@@ -1,0 +1,70 @@
+version: 1
+domain: export
+title: "Export and Pagination Flow"
+summary: "Implementation-aligned contract for export commands and list pagination semantics across scenarios, tags, and export pipelines."
+template: docs/contracts/templates/deep_dive.md.j2
+generated_doc: docs/EXPORT_FLOW.md
+command_surface:
+  command: attackiq export [assessments|scenarios|templates|tests]
+  subcommands:
+    - name: assessments
+      options: [--output, --format, --page-size, --max-pages, --asset-group-id, --blueprint-id, --execution-strategy, --has-default-schedule, --name, --report-instance-type, --search, --use-scenario-alert-rules, --version, --zones-ordering, --insecure, --timeout]
+    - name: scenarios
+      options: [--output, --format, --page-size, --insecure, --timeout]
+    - name: templates
+      options: [--output, --format, --page-size, --include-empty, --scenario-details, --scenario-details-lenient, --scenario-details-retries, --scenario-concurrency, --insecure, --timeout]
+    - name: tests
+      options: [--output, --format, --page-size, --insecure, --timeout]
+invariants:
+  - "`paginate_results(...)` uses `page` as a starting page and advances until no `next` or no results."
+  - "`export templates|scenarios|tests --page-size` requires `>= 1`."
+  - "`export templates --scenario-concurrency` requires `>= 1`."
+  - "`tags list --page N` and `scenarios list --page N` fetch one explicit page; without `--page`, they auto-paginate."
+artifacts:
+  - "Deterministic JSON output (sorted keys, pretty indentation)."
+  - "CSV files for normalized records with stable field ordering per workflow."
+  - "Template scenario-detail enrichment artifacts in CSV/JSON output payloads."
+code_references:
+  - path: src/attackiq_cli/cli.py
+    symbol: export_templates
+  - path: src/attackiq_cli/cli.py
+    symbol: export_scenarios
+  - path: src/attackiq_cli/cli.py
+    symbol: export_assessments
+  - path: src/attackiq_cli/cli.py
+    symbol: export_tests
+  - path: src/attackiq_cli/cli.py
+    symbol: list_scenarios
+  - path: src/attackiq_cli/cli.py
+    symbol: list_tags
+  - path: src/attackiq_cli/cli.py
+    symbol: search_tags
+  - path: src/attackiq_cli/client.py
+    symbol: paginate_results
+  - path: src/attackiq_cli/exporter.py
+    symbol: resolve_format
+  - path: src/attackiq_cli/exporter.py
+    symbol: write_json
+  - path: src/attackiq_cli/exporter.py
+    symbol: write_csv_records
+  - path: src/attackiq_cli/exporter.py
+    symbol: build_scenario_export_records
+  - path: src/attackiq_cli/services.py
+    symbol: build_assessment_summary_records
+  - path: src/attackiq_cli/services.py
+    symbol: build_test_summary_records
+test_references:
+  - path: tests/test_cli_export_templates.py
+  - path: tests/test_cli_export_scenarios.py
+  - path: tests/test_cli_export_assessments.py
+  - path: tests/test_cli_export_tests.py
+  - path: tests/test_cli_scenarios.py
+  - path: tests/test_cli_tags.py
+  - path: tests/test_exporter.py
+help_checks:
+  - command: [attackiq, export, --help]
+    options: [assessments, scenarios, templates, tests]
+  - command: [attackiq, export, templates, --help]
+    options: [--output, --format, --page-size, --include-empty, --scenario-details, --scenario-details-lenient, --scenario-details-retries, --scenario-concurrency, --insecure, --timeout]
+  - command: [attackiq, export, assessments, --help]
+    options: [--output, --format, --page-size, --max-pages, --asset-group-id, --blueprint-id, --execution-strategy, --has-default-schedule, --name, --report-instance-type, --search, --use-scenario-alert-rules, --version, --zones-ordering, --insecure, --timeout]
