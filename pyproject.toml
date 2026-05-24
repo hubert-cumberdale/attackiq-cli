@@ -1,0 +1,84 @@
+[build-system]
+requires = ["setuptools>=78.1.1", "wheel>=0.46.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "attackiq-cli"
+version = "0.1.15"
+description = "Enterprise-grade CLI for the AttackIQ API built from the provided OpenAPI schema."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "AttackIQ CLI Maintainer" }]
+license = { text = "MIT" }
+keywords = ["attackiq", "cli", "openapi", "security", "bas"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Security",
+    "Topic :: Software Development :: Libraries :: Application Frameworks",
+]
+dependencies = [
+    "httpx>=0.27,<0.28",
+    "typer>=0.12,<0.13",
+    "click>=8.1,<8.2",
+    "pyyaml>=6.0,<7.0",
+    "rich>=13,<14",
+    "textual>=0.58,<1.0",
+    "tenacity>=8.4,<9.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=9.0.3,<10",
+    "ruff>=0.6,<0.7",
+    "mypy>=1.10,<2.0",
+    "setuptools>=78.1.1,<79",
+    "wheel>=0.46.2,<0.47",
+]
+docs = [
+    "mkdocs>=1.6,<2.0",
+]
+platform-api = [
+    "aiq-platform-api>=1.0.49,<1.1; python_version >= '3.11'",
+]
+
+[project.scripts]
+attackiq = "attackiq_cli.cli:app"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+attackiq_cli = ["openapi.yaml"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+cache-dir = "/tmp/aiq-cli-ruff-cache"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "ARG"]
+
+[tool.ruff.lint.per-file-ignores]
+"src/attackiq_cli/cli.py" = ["B008"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_unused_ignores = true
+warn_return_any = true
+no_implicit_optional = true
+check_untyped_defs = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+cache_dir = "/tmp/aiq-cli-pytest-cache"
+testpaths = ["tests"]

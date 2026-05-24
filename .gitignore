@@ -1,0 +1,26 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.cache/
+.coverage
+dist/
+build/
+site/
+
+# Virtual environments
+.env
+.venv
+venv/
+
+# Editors
+.DS_Store
+.vscode/
+.idea/
+
+# Local config overrides
+*.log
+!.keep
+.codex

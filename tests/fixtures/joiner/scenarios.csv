@@ -1,0 +1,4 @@
+name,id,technique,supported_platforms,capabilities
+Scenario One,1,T1003,Windows,Creds
+Scenario Two,2,T1059.001,Linux,Execution
+Scenario Three,3,,macOS,Discovery
