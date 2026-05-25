@@ -1,0 +1,52 @@
+{
+  "case": "discovery_success",
+  "contract": "aiq-assist-mcp-consumer",
+  "contract_version": "v0",
+  "endpoint_path": "/aiq-assist/mcp",
+  "live": false,
+  "auth_mode": "oauth",
+  "request": {
+    "method": "POST",
+    "path": "/aiq-assist/mcp",
+    "headers": {
+      "Authorization": "<redacted>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "jsonrpc": "2.0",
+      "id": "fixture-discovery",
+      "method": "tools/list",
+      "params": {}
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "body": {
+      "jsonrpc": "2.0",
+      "id": "fixture-discovery",
+      "result": {
+        "tools": [
+          {
+            "name": "aiq.assist.summarize",
+            "description": "Synthetic discovery fixture",
+            "inputSchema": {
+              "type": "object",
+              "properties": {
+                "record_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "record_id"
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "expected": {
+    "outcome": "success",
+    "redacted": true
+  }
+}

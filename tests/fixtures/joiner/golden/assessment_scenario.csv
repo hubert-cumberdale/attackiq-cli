@@ -1,0 +1,4 @@
+assessment_id,assessment_name,scenario_id,scenario_name,scenario_technique,scenario_supported_platforms,scenario_capabilities
+100,Assessment Alpha,1,Scenario One,T1003,Windows,Creds
+101,Assessment Beta,2,Scenario Two,T1059.001,Linux,Execution
+102,Assessment Gamma,3,Scenario Three,,macOS,Discovery

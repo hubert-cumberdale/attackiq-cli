@@ -1,0 +1,23 @@
+{
+  "dirty_worktree_allowed": false,
+  "export_created_utc": "2026-05-25T19:36:52+00:00",
+  "history_policy": "single sanitized source snapshot; no private git history",
+  "package_policy": "source mirror only; no package artifacts are committed",
+  "package_version": "0.1.17",
+  "public_repo": "hubert-cumberdale/attackiq-cli",
+  "schema_version": 1,
+  "source_commit": "7cbef9e882943ba9a6ba37476ab7a78f4ae1e380",
+  "source_ref": "v0.1.17",
+  "source_snapshot": "git-archive",
+  "tree_sha256": "a9a0a8a568b8a335442a0a4b7843d48c9ab8910e0f71cab449560f4ac4a764b9",
+  "tree_sha256_excludes": [
+    "PUBLICATION_MANIFEST.json",
+    ".git/"
+  ],
+  "validation_commands": [
+    "python3 scripts/check_public_safety.py",
+    "python3 scripts/check_public_mirror.py --ref v0.1.17",
+    ".venv/bin/python scripts/quality_gate.py",
+    "git rev-list --count HEAD"
+  ]
+}

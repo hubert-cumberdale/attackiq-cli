@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "endpoints": [
+    {
+      "domain": "observable-field-mappings",
+      "method": "GET",
+      "path": "/v1/observable_field_mappings",
+      "classification": "needs-redaction",
+      "query_params": {
+        "include_inactive": false
+      },
+      "required_params": [],
+      "pagination": "page",
+      "response_kind": "paginated-list",
+      "sensitive_fields": [
+        "api_token",
+        "client_secret",
+        "configuration"
+      ]
+    },
+    {
+      "domain": "tenant-sso-settings",
+      "method": "GET",
+      "path": "/v1/sso/settings",
+      "classification": "unsupported",
+      "pagination": "none",
+      "response_kind": "object"
+    }
+  ]
+}

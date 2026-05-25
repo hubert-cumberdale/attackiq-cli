@@ -1,0 +1,45 @@
+{
+  "case": "provider_error_redaction",
+  "contract": "aiq-assist-mcp-consumer",
+  "contract_version": "v0",
+  "endpoint_path": "/aiq-assist/mcp",
+  "live": false,
+  "auth_mode": "token",
+  "request": {
+    "method": "POST",
+    "path": "/aiq-assist/mcp",
+    "headers": {
+      "Authorization": "<redacted>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "jsonrpc": "2.0",
+      "id": "fixture-provider-error",
+      "method": "tools/call",
+      "params": {
+        "name": "aiq.assist.summarize",
+        "arguments": {
+          "record_id": "synthetic-record"
+        }
+      }
+    }
+  },
+  "response": {
+    "status_code": 502,
+    "body": {
+      "jsonrpc": "2.0",
+      "id": "fixture-provider-error",
+      "error": {
+        "code": 502,
+        "message": "Provider rejected Authorization: Bearer <redacted>",
+        "data": {
+          "provider_request_id": "synthetic-provider-error"
+        }
+      }
+    }
+  },
+  "expected": {
+    "outcome": "provider_error",
+    "redacted": true
+  }
+}

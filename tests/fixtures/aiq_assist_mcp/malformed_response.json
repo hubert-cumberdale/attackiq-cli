@@ -1,0 +1,32 @@
+{
+  "case": "malformed_response",
+  "contract": "aiq-assist-mcp-consumer",
+  "contract_version": "v0",
+  "endpoint_path": "/aiq-assist/mcp",
+  "live": false,
+  "auth_mode": "token",
+  "request": {
+    "method": "POST",
+    "path": "/aiq-assist/mcp",
+    "headers": {
+      "Authorization": "<redacted>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "jsonrpc": "2.0",
+      "id": "fixture-malformed",
+      "method": "tools/list",
+      "params": {}
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "body": {
+      "unexpected": "missing JSON-RPC envelope"
+    }
+  },
+  "expected": {
+    "outcome": "malformed_response",
+    "redacted": true
+  }
+}
