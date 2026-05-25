@@ -1,0 +1,30 @@
+{
+  "case": "timeout_failure",
+  "contract": "aiq-assist-mcp-consumer",
+  "contract_version": "v0",
+  "endpoint_path": "/aiq-assist/mcp",
+  "live": false,
+  "auth_mode": "oauth",
+  "request": {
+    "method": "POST",
+    "path": "/aiq-assist/mcp",
+    "headers": {
+      "Authorization": "<redacted>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "jsonrpc": "2.0",
+      "id": "fixture-timeout",
+      "method": "tools/list",
+      "params": {}
+    }
+  },
+  "error": {
+    "type": "timeout",
+    "message": "Request timed out after the configured deadline"
+  },
+  "expected": {
+    "outcome": "timeout",
+    "redacted": true
+  }
+}
