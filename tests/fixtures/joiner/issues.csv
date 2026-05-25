@@ -1,0 +1,5 @@
+ID,IID,Title,Description,Type,URL,State,Confidential,Locked,Milestone,Labels,Author,Auther Username,Assignee,Assignee Username,Created At (UTC),Updated At (UTC),Closed At (UTC),Due Date,Start Date,Parent ID,Parent IID,Parent Title,Time Estimate,Time Spent,Weight
+1,10,Issue One,,issue,https://gitlab/1,opened,false,false,,"T1003, TA0001, DET0001, tool::mimikatz, PR.AC",,,,,2026-01-01T00:00:00Z,2026-01-02T00:00:00Z,,,,,,,,,
+2,11,Issue Two,,issue,https://gitlab/2,closed,false,false,,"T1059.001, T1003",,,,,2026-01-03T00:00:00Z,2026-01-04T00:00:00Z,,,,,,,,,
+3,12,Issue Three,,issue,https://gitlab/3,opened,false,false,,"TA0001, DET0002",,,,,2026-01-05T00:00:00Z,2026-01-06T00:00:00Z,,,,,,,,,
+4,13,Issue Four,,issue,https://gitlab/4,opened,false,false,,T9999,,,,,2026-01-07T00:00:00Z,2026-01-08T00:00:00Z,,,,,,,,,
