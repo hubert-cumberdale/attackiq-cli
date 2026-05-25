@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AttackIQ CLI Configuration Backup Endpoint Catalog",
+  "type": "object",
+  "required": ["version", "endpoints"],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "endpoints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["domain", "method", "path", "classification"],
+        "additionalProperties": false,
+        "properties": {
+          "domain": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9-]*$"
+          },
+          "method": {
+            "type": "string",
+            "enum": ["GET", "POST", "PUT", "PATCH", "DELETE"]
+          },
+          "path": {
+            "type": "string",
+            "pattern": "^/"
+          },
+          "operation_id": {
+            "type": "string"
+          },
+          "classification": {
+            "type": "string",
+            "enum": ["backup-safe", "needs-redaction", "write-like", "unsupported"]
+          },
+          "query_params": {
+            "type": "object",
+            "additionalProperties": {
+              "type": ["string", "number", "integer", "boolean", "null"]
+            }
+          },
+          "required_params": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "pagination": {
+            "type": "string",
+            "enum": ["page", "none"],
+            "default": "page"
+          },
+          "response_kind": {
+            "type": "string",
+            "enum": ["paginated-list", "list", "object"]
+          },
+          "sensitive_fields": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "classification": {
+                  "const": "needs-redaction"
+                }
+              }
+            },
+            "then": {
+              "required": ["sensitive_fields"]
+            }
+          }
+        ]
+      }
+    }
+  }
+}

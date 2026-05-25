@@ -1,0 +1,90 @@
+name: CI
+
+on:
+  push:
+    branches: ["main", "master"]
+    tags: ["v*"]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install -c constraints.txt --upgrade pip
+          python -m pip install -c constraints.txt .[dev]
+      - name: Check dependency constraints
+        run: python3 scripts/check_dependency_constraints.py
+      - name: Check release governance
+        run: python3 scripts/check_release_governance.py
+      - name: Check public safety
+        run: python3 scripts/check_public_safety.py
+      - name: Check public mirror dry run
+        run: python3 scripts/check_public_mirror.py --allow-dirty --skip-wheel
+      - name: Ruff
+        run: ruff check src tests scripts/build_enterprise_package.py scripts/verify_enterprise_package.py scripts/check_public_mirror.py scripts/check_public_safety.py scripts/check_release_governance.py scripts/live_smoke.py
+      - name: Mypy
+        run: python -m mypy src tests --cache-dir /tmp/aiq-cli-mypy
+      - name: Pytest
+        run: pytest
+      - name: Check docs links
+        run: python3 scripts/check_doc_links.py
+      - name: Check deep-dive render drift
+        run: python3 scripts/render_deep_dives.py --check
+      - name: Verify deep-dive contracts
+        run: python3 scripts/verify_deep_dives.py
+
+  release-hygiene:
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: |
+          python -m pip install -c constraints.txt --upgrade pip
+          python -m pip install -c constraints.txt .[dev] pip-audit
+      - name: Check dependency constraints
+        run: python3 scripts/check_dependency_constraints.py
+      - name: Check release governance
+        run: python3 scripts/check_release_governance.py
+      - name: Check public safety
+        run: python3 scripts/check_public_safety.py
+      - name: Check public mirror dry run
+        run: python3 scripts/check_public_mirror.py --ref "${GITHUB_REF_NAME}" --skip-wheel
+      - name: Validate changelog contains tag heading
+        run: |
+          VERSION="${GITHUB_REF_NAME}"
+          grep -q "^## ${VERSION} " CHANGELOG.md
+      - name: Validate tag matches pyproject version
+        run: |
+          python - <<'PY'
+          import os
+          import pathlib
+          import sys
+          import tomllib
+
+          tag = os.environ["GITHUB_REF_NAME"]
+          expected = tag[1:] if tag.startswith("v") else tag
+          data = tomllib.loads(pathlib.Path("pyproject.toml").read_text(encoding="utf-8"))
+          version = data["project"]["version"]
+          if version != expected:
+              print(f"pyproject version mismatch: tag={tag}, pyproject={version}", file=sys.stderr)
+              raise SystemExit(1)
+          print(f"version check passed: {version}")
+          PY
+      - name: Dependency vulnerability audit
+        run: pip-audit

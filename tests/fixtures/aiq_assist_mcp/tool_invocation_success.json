@@ -1,0 +1,46 @@
+{
+  "case": "tool_invocation_success",
+  "contract": "aiq-assist-mcp-consumer",
+  "contract_version": "v0",
+  "endpoint_path": "/aiq-assist/mcp",
+  "live": false,
+  "auth_mode": "token",
+  "request": {
+    "method": "POST",
+    "path": "/aiq-assist/mcp",
+    "headers": {
+      "Authorization": "<redacted>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "jsonrpc": "2.0",
+      "id": "fixture-tool-call",
+      "method": "tools/call",
+      "params": {
+        "name": "aiq.assist.summarize",
+        "arguments": {
+          "record_id": "synthetic-record"
+        }
+      }
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "body": {
+      "jsonrpc": "2.0",
+      "id": "fixture-tool-call",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Synthetic assistant result"
+          }
+        ]
+      }
+    }
+  },
+  "expected": {
+    "outcome": "success",
+    "redacted": true
+  }
+}
