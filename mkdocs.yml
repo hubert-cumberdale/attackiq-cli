@@ -1,0 +1,54 @@
+site_name: AttackIQ CLI Docs
+site_description: Public operator and architecture documentation for AttackIQ CLI workflows.
+site_author: AttackIQ CLI Maintainer
+docs_dir: docs
+site_dir: site
+use_directory_urls: true
+
+validation:
+  nav:
+    omitted_files: ignore
+
+theme:
+  name: readthedocs
+  highlightjs: true
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - fenced_code
+  - tables
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Quickstart: wiki/getting-started.md
+      - Authentication: wiki/authentication.md
+      - Production Operator Runbook: PRODUCTION_OPERATOR_RUNBOOK.md
+      - Configuration Backup Runbook: CONFIGURATION_BACKUP_RUNBOOK.md
+      - Public Release: PUBLIC_RELEASE.md
+      - Artifactory Delivery: ARTIFACTORY_DELIVERY.md
+      - Signing And Attestation: SIGNING_ATTESTATION.md
+      - Screenshots: wiki/screenshots.md
+  - Workflows:
+      - AttackIQ Assessments: wiki/attackiq-assessment-workflows.md
+      - Enterprise BAS: wiki/enterprise-bas-workflows.md
+      - Scenario Upload: playbooks/scenario-upload.md
+  - Reference:
+      - CLI Architecture: ARCHITECTURE.md
+      - Architecture Standards: ARCHITECTURE_STANDARDS.md
+      - Catalog Contract: CATALOG_CONTRACT.md
+      - Integration Boundaries: INTEGRATION_BOUNDARIES.md
+      - AIQ Assist MCP Contract: AIQ_ASSIST_MCP_CONTRACT.md
+      - AIQ Assist MCP Provider Intake: AIQ_ASSIST_MCP_PROVIDER_INTAKE.md
+      - Integration Card Template: integration-cards/AIQ_INTEGRATION.md
+      - AIQ Assist MCP Integration Card: integration-cards/AIQ_ASSIST_MCP.md
+      - Production Readiness: PRODUCTION_READINESS.md
+      - Review Standards: REVIEW_STANDARDS.md
+      - Regression Testing Strategy: REGRESSION_TESTING_STRATEGY.md
+      - Scenario Wizard Local Create: SCENARIO_WIZARD_LOCAL_CREATE.md
+      - Current State: STATE.md
+      - Roadmap: ROADMAP.md
+      - Governance: GOVERNANCE.md
