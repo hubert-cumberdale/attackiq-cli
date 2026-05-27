@@ -1,0 +1,5 @@
+assessment_id,assessment_name,scenario_id,scenario_name,scenario_technique,scenario_supported_platforms,scenario_capabilities,issue_id,issue_iid,issue_title,issue_url,issue_state,issue_created_at_utc,issue_updated_at_utc,issue_technique_token,labels_raw,issue_techniques,issue_tactics,issue_detection_strategy_ids,issue_tools,issue_csf
+100,Assessment Alpha,1,Scenario One,T1003,Windows,Creds,1,10,Issue One,https://gitlab/1,opened,2026-01-01T00:00:00Z,2026-01-02T00:00:00Z,T1003,"T1003, TA0001, DET0001, tool::mimikatz, PR.AC",T1003,TA0001,DET0001,tool::mimikatz,PR.AC
+100,Assessment Alpha,1,Scenario One,T1003,Windows,Creds,2,11,Issue Two,https://gitlab/2,closed,2026-01-03T00:00:00Z,2026-01-04T00:00:00Z,T1003,"T1059.001, T1003","T1059.001, T1003",,,,
+101,Assessment Beta,2,Scenario Two,T1059.001,Linux,Execution,2,11,Issue Two,https://gitlab/2,closed,2026-01-03T00:00:00Z,2026-01-04T00:00:00Z,T1059.001,"T1059.001, T1003","T1059.001, T1003",,,,
+102,Assessment Gamma,3,Scenario Three,,macOS,Discovery,,,,,,,,,,,,,,
