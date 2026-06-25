@@ -1,0 +1,19 @@
+{
+  "results": [
+    {
+      "id": "mapping-1",
+      "name": "Endpoint Host Mapping",
+      "source_field": "hostname",
+      "target_field": "asset.name",
+      "api_token": "raw-api-token",
+      "client_secret": "raw-client-secret",
+      "configuration": {
+        "headers": {
+          "authorization": "Bearer raw-authorization-value"
+        },
+        "mode": "sync"
+      }
+    }
+  ],
+  "next": null
+}

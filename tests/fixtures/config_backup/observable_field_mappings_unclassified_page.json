@@ -1,0 +1,12 @@
+{
+  "results": [
+    {
+      "id": "mapping-2",
+      "name": "Unclassified Secret Mapping",
+      "source_field": "ip_address",
+      "target_field": "asset.ip",
+      "password": "raw-password"
+    }
+  ],
+  "next": null
+}

@@ -1,0 +1,94 @@
+version: 1
+domain: joiner
+title: "Joiner and DET Pipeline Flow"
+summary: "Implementation-aligned contract for deterministic dataset joins and staged `det-pipeline` behavior, including apply-mode mutation boundaries."
+template: docs/contracts/templates/deep_dive.md.j2
+generated_doc: docs/JOINER_FLOW.md
+command_surface:
+  command: attackiq join [datasets|det-pipeline]
+  options:
+    - name: --assessments
+      required: false
+      default: null
+    - name: --scenarios
+      required: false
+      default: null
+    - name: --issues
+      required: false
+      default: null
+    - name: --outdir
+      required: false
+      default: null
+    - name: --project-id
+      required: false
+      default: null
+    - name: --apply
+      required: false
+      default: false
+    - name: --dry-run/--no-dry-run
+      required: false
+      default: --dry-run
+    - name: --top-k
+      required: false
+      default: 5
+    - name: --top-n-per-issue
+      required: false
+      default: 1
+    - name: --force-tool-label
+      required: false
+      default: false
+    - name: --allow-append-sections
+      required: false
+      default: false
+    - name: --timestamp
+      required: false
+      default: null
+    - name: --fail-on-missing-scenario/--no-fail-on-missing-scenario
+      required: false
+      default: --fail-on-missing-scenario
+    - name: --fail-on-malformed-scenario-technique/--no-fail-on-malformed-scenario-technique
+      required: false
+      default: --fail-on-malformed-scenario-technique
+invariants:
+  - "`datasets` mode emits deterministic CSVs and manifest hashes from stable sorted outputs."
+  - "`det-pipeline` requires `--issues`, `--scenarios`, `--outdir`, and `--project-id`."
+  - "Network mutation only occurs when `--apply` is set."
+  - "Dry-run artifacts are still generated for review in det-pipeline mode."
+artifacts:
+  - "Dataset mode outputs: `assessment_scenario.csv`, `issue_scenario.csv`, `assessment_scenario_issue.csv`, `issues_unmapped.csv`, `manifest.json`."
+  - "Det-pipeline stage artifacts under `<outdir>/artifacts`."
+  - "Det-pipeline always writes `apply_report.json`."
+code_references:
+  - path: src/attackiq_cli/cli_join.py
+    symbol: join_exports
+  - path: src/attackiq_cli/joiner/cli.py
+    symbol: run_join
+  - path: src/attackiq_cli/joiner/det_pipeline.py
+    symbol: run_det_pipeline
+  - path: src/attackiq_cli/joiner/det_pipeline.py
+    symbol: _apply_attackiq_assessments
+  - path: src/attackiq_cli/joiner/det_pipeline.py
+    symbol: _apply_gitlab_updates
+test_references:
+  - path: tests/test_cli_joiner.py
+  - path: tests/test_joiner_join.py
+  - path: tests/test_joiner_outputs.py
+  - path: tests/test_joiner_parse_labels.py
+  - path: tests/test_joiner_det_pipeline.py
+help_checks:
+  - command: [attackiq, join, --help]
+    options:
+      - --assessments
+      - --scenarios
+      - --issues
+      - --outdir
+      - --project-id
+      - --apply
+      - --dry-run
+      - --top-k
+      - --top-n-per-issue
+      - --force-tool-label
+      - --allow-append-sections
+      - --timestamp
+      - --fail-on-missing-scenario
+      - --fail-on-malformed-scenario-technique

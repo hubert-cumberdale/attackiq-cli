@@ -1,0 +1,46 @@
+{
+  "case": "oauth_tool_invocation_success",
+  "contract": "aiq-assist-mcp-consumer",
+  "contract_version": "v0",
+  "endpoint_path": "/aiq-assist/mcp",
+  "live": false,
+  "auth_mode": "oauth",
+  "request": {
+    "method": "POST",
+    "path": "/aiq-assist/mcp",
+    "headers": {
+      "Authorization": "<redacted>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "jsonrpc": "2.0",
+      "id": "fixture-oauth-tool-call",
+      "method": "tools/call",
+      "params": {
+        "name": "aiq.assist.summarize",
+        "arguments": {
+          "record_id": "synthetic-record"
+        }
+      }
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "body": {
+      "jsonrpc": "2.0",
+      "id": "fixture-oauth-tool-call",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Synthetic OAuth assistant result"
+          }
+        ]
+      }
+    }
+  },
+  "expected": {
+    "outcome": "success",
+    "redacted": true
+  }
+}

@@ -1,0 +1,122 @@
+version: 1
+domain: call
+title: "`attackiq call` Execution Flow"
+summary: "Implementation-aligned contract for request construction, validation, and output formatting in `attackiq call`."
+template: docs/contracts/templates/deep_dive.md.j2
+generated_doc: docs/CALL_FLOW.md
+command_surface:
+  command: attackiq call <operation_id>
+  options:
+    - name: --param
+      required: false
+      default: null
+    - name: --header
+      required: false
+      default: null
+    - name: --cookie
+      required: false
+      default: null
+    - name: --body
+      required: false
+      default: null
+    - name: --body-file
+      required: false
+      default: null
+    - name: --form
+      required: false
+      default: null
+    - name: --form-file
+      required: false
+      default: null
+    - name: --interactive
+      required: false
+      default: false
+    - name: --output
+      required: false
+      default: null
+    - name: --output-format
+      required: false
+      default: null
+      allowed_values: [pretty-json, raw, csv]
+    - name: --base-url
+      required: false
+      default: null
+    - name: --timeout
+      required: false
+      default: null
+    - name: --log-json/--no-log-json
+      required: false
+      default: --no-log-json
+    - name: --log-level
+      required: false
+      default: null
+    - name: --verbose
+      required: false
+      default: false
+    - name: --auth-scheme
+      required: false
+      default: auto
+      allowed_values: [auto, account-token, jwt, none]
+    - name: --insecure
+      required: false
+      default: false
+    - name: --dry-run
+      required: false
+      default: false
+invariants:
+  - "JSON body flags (`--body`, `--body-file`) and form flags (`--form`, `--form-file`) are mutually exclusive."
+  - "Required path/header/cookie parameters from OpenAPI are enforced before send."
+  - "JSON request-body validation covers basic types, required fields, additionalProperties=false, selected formats, string length/pattern checks, numeric bounds, and common object/array count constraints."
+  - "Header values containing CR/LF are rejected before request execution."
+  - "Dry-run mode never sends a network request and redacts sensitive headers."
+  - "Safe-method retries apply only to `GET`, `HEAD`, and `OPTIONS` requests."
+artifacts:
+  - Response payload output to stdout/file according to `--output` and `--output-format`.
+  - Optional CSV output when response body is a JSON array of objects.
+  - Dry-run request preview output with redacted sensitive fields.
+code_references:
+  - path: src/attackiq_cli/cli_call.py
+    symbol: call
+  - path: src/attackiq_cli/cli_call.py
+    symbol: handle_response
+  - path: src/attackiq_cli/cli_call.py
+    symbol: coerce_params
+  - path: src/attackiq_cli/utils.py
+    symbol: parse_key_value_pairs
+  - path: src/attackiq_cli/utils.py
+    symbol: coerce_value_from_schema
+  - path: src/attackiq_cli/utils.py
+    symbol: validate_json_payload
+  - path: src/attackiq_cli/service_core.py
+    symbol: load_service_context
+  - path: src/attackiq_cli/service_core.py
+    symbol: ensure_auth
+  - path: src/attackiq_cli/client.py
+    symbol: AttackIQClient
+  - path: src/attackiq_cli/client.py
+    symbol: send
+test_references:
+  - path: tests/test_cli_call.py
+  - path: tests/test_cli_call_body_validation.py
+  - path: tests/test_cli_call_output.py
+help_checks:
+  - command: [attackiq, call, --help]
+    options:
+      - --param
+      - --header
+      - --cookie
+      - --body
+      - --body-file
+      - --form
+      - --form-file
+      - --interactive
+      - --output
+      - --output-format
+      - --base-url
+      - --timeout
+      - --log-json
+      - --log-level
+      - --verbose
+      - --auth-scheme
+      - --insecure
+      - --dry-run
