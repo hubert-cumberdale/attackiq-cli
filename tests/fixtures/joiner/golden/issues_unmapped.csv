@@ -1,0 +1,3 @@
+issue_id,issue_iid,issue_title,issue_url,issue_state,reason,labels_raw,issue_techniques
+3,12,Issue Three,https://gitlab/3,opened,no_technique_labels,"TA0001, DET0002",
+4,13,Issue Four,https://gitlab/4,opened,no_scenario_match,T9999,T9999

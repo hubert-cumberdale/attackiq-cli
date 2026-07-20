@@ -1,0 +1,31 @@
+{
+  "contract": "aiq-assist-mcp-provider-source",
+  "contract_version": "v0",
+  "endpoint_path": "/aiq-assist/mcp",
+  "status": "pending_provider_source",
+  "provider_contract_source": null,
+  "provider_contract_version": null,
+  "provider_owner": null,
+  "provider_owner_status": "pending_named_aiq_assist_mcp_service_owner",
+  "status_owner": "aiq-cli maintainers",
+  "consumer_contract": "docs/AIQ_ASSIST_MCP_CONTRACT.md",
+  "integration_card": "docs/integration-cards/AIQ_ASSIST_MCP.md",
+  "allow_cli_tui_consumption": false,
+  "allow_live_mcp_checks": false,
+  "last_reviewed": "2026-07-18",
+  "next_action": "The named AIQ Assist MCP service owner must provide the canonical provider MCP wire-contract source before adapter implementation starts.",
+  "required_source_properties": [
+    "transport",
+    "mcp_protocol_version",
+    "endpoint_path",
+    "tenant_relative_url_rule",
+    "oauth_auth",
+    "token_auth",
+    "discovery_request_response",
+    "tool_invocation_request_response",
+    "provider_error_shape",
+    "timeout_retry_expectations",
+    "redaction_rules",
+    "live_test_opt_in"
+  ]
+}
