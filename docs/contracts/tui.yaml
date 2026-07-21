@@ -1,0 +1,111 @@
+version: 1
+domain: tui
+title: "TUI Runtime, State, and Cache Flow"
+summary: "Implementation-aligned contract for `attackiq tui` runtime option resolution, tab workflows, and in-session caching behavior."
+template: docs/contracts/templates/deep_dive.md.j2
+generated_doc: docs/TUI_FLOW.md
+command_surface:
+  command: attackiq tui
+  options:
+    - name: --page-size
+      required: false
+      default: 20
+    - name: --order-by
+      required: false
+      default: last_updated
+    - name: --search
+      required: false
+      default: null
+    - name: --tag
+      required: false
+      default: null
+    - name: --filter-debounce
+      required: false
+      default: 0.4
+    - name: --timeout
+      required: false
+      default: null
+    - name: --auth-scheme
+      required: false
+      default: auto
+      allowed_values: [auto, account-token, jwt, none]
+    - name: --insecure
+      required: false
+      default: false
+invariants:
+  - "`run_tui` resolves timeout and TLS mode from CLI flags first, then config defaults."
+  - "Workflow tabs are read-only and use shared service abstractions, not direct endpoint logic in widgets."
+  - "Cache entries are bounded (`ATTACKIQ_TUI_CACHE_MAX`) and optionally TTL-pruned (`ATTACKIQ_TUI_CACHE_TTL`)."
+  - "Status diagnostics refresh on explicit status refresh actions and tab activation transitions."
+  - "The Scenarios, Assessments, and Tests tabs expose contextual local `new-assessment`, `assessment-from-template`, `assessment-defaults`, `assessment-run`, `new-test`, `test-scenarios`, and `test-status` call-plan previews with `No request sent` status; the TUI does not expose apply-mode execution."
+artifacts:
+  - "Runtime diagnostics shown in Status and Settings tabs (auth/base-url/spec/cache/runtime sources)."
+  - "Export files under `<workspace>/exports/` from workflow tabs (`e`/`c` shortcuts)."
+  - "In-memory cache statistics surfaced via command palette cache commands."
+  - "In-memory new-assessment, assessment-from-template, assessment-default targets, assessment-run, new-test, test-scenario assignment, and test-status request previews; preview export and persistence are not available."
+code_references:
+  - path: src/attackiq_cli/tui.py
+    symbol: run_tui
+  - path: src/attackiq_cli/tui_provider.py
+    symbol: TuiDataProvider
+  - path: src/attackiq_cli/tui_provider_state.py
+    symbol: build_tui_state
+  - path: src/attackiq_cli/tui_app.py
+    symbol: AttackIQTuiApp
+  - path: src/attackiq_cli/tui_preview.py
+    symbol: AssessmentDefaultsPreviewScreen
+  - path: src/attackiq_cli/tui_preview.py
+    symbol: AssessmentFromTemplatePreviewScreen
+  - path: src/attackiq_cli/tui_preview.py
+    symbol: AssessmentRunPreviewScreen
+  - path: src/attackiq_cli/tui_preview.py
+    symbol: NewTestPreviewScreen
+  - path: src/attackiq_cli/tui_preview.py
+    symbol: NewAssessmentPreviewScreen
+  - path: src/attackiq_cli/tui_preview.py
+    symbol: TestScenariosPreviewScreen
+  - path: src/attackiq_cli/tui_preview.py
+    symbol: TestStatusPreviewScreen
+  - path: src/attackiq_cli/tui_mutation_preview.py
+    symbol: build_tui_mutation_preview
+  - path: src/attackiq_cli/tui_widgets.py
+    symbol: StatusTab
+  - path: src/attackiq_cli/tui_scenarios.py
+    symbol: ScenariosTab
+  - path: src/attackiq_cli/tui_results.py
+    symbol: ResultsTab
+  - path: src/attackiq_cli/tui_assessments.py
+    symbol: AssessmentsTab
+  - path: src/attackiq_cli/tui_tests.py
+    symbol: WorkflowTestsTab
+  - path: src/attackiq_cli/tui_assets.py
+    symbol: WorkflowAssetsTab
+  - path: src/attackiq_cli/tui_settings.py
+    symbol: WorkflowSettingsTab
+test_references:
+  - path: tests/test_cli_tui.py
+  - path: tests/test_tui_app.py
+  - path: tests/test_tui_assessments.py
+  - path: tests/test_tui_assets.py
+  - path: tests/test_tui_layout.py
+  - path: tests/test_tui_provider_cache.py
+  - path: tests/test_tui_provider_state.py
+  - path: tests/test_tui_preview.py
+  - path: tests/test_tui_mutation_preview.py
+  - path: tests/test_tui_results.py
+  - path: tests/test_tui_results_provider.py
+  - path: tests/test_tui_scenarios.py
+  - path: tests/test_tui_settings.py
+  - path: tests/test_tui_tests.py
+  - path: tests/test_tui_widgets.py
+help_checks:
+  - command: [attackiq, tui, --help]
+    options:
+      - --page-size
+      - --order-by
+      - --search
+      - --tag
+      - --filter-debounce
+      - --timeout
+      - --auth-scheme
+      - --insecure

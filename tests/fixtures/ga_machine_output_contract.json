@@ -1,0 +1,676 @@
+{
+  "backup": {
+    "artifact_payload_keys": [
+      "classification",
+      "domain",
+      "operation_id",
+      "records",
+      "source"
+    ],
+    "artifact_summary_keys": [
+      "artifact",
+      "classification",
+      "domain",
+      "operation_id",
+      "record_count",
+      "redacted_field_count",
+      "redacted_paths",
+      "redaction_status",
+      "source"
+    ],
+    "manifest_keys": [
+      "artifacts",
+      "backup_type",
+      "cli_version",
+      "command",
+      "domains_requested",
+      "generated_at",
+      "redaction_policy",
+      "skipped_domains",
+      "tenant_alias"
+    ],
+    "redaction_policy_keys": [
+      "raw_response_output",
+      "redacted_value",
+      "status"
+    ]
+  },
+  "build_payloads": {
+    "assessment_from_template": {
+      "blueprint": "ee15c9ab-2dbc-4d3f-9b86-35c00d0d1796",
+      "project_name": "Synthetic Assessment",
+      "template": "d09d29ba-eed8-4212-bff2-4d1ee11ed80c"
+    },
+    "test_add_scenarios": {
+      "include": [
+        "03fef867-3227-4d47-a858-90f9ad8cf217",
+        "00000000-0000-0000-0000-000000000000"
+      ]
+    },
+    "test_create": {
+      "name": "Synthetic Test",
+      "project": "ef900dfe-1bb9-475d-944a-07ffaeb26ad4"
+    }
+  },
+  "catalog": {
+    "coverage_keys": [
+      "catalog_path",
+      "execution_classifications",
+      "inventory_count",
+      "inventory_statuses",
+      "inventory_techniques_with_scenarios",
+      "inventory_techniques_without_scenarios",
+      "patterns",
+      "providers",
+      "scenario_count",
+      "statuses",
+      "surfaces",
+      "techniques",
+      "unique_techniques"
+    ],
+    "csv_headers": [
+      "id",
+      "name",
+      "domain",
+      "cloud_provider",
+      "source_domain",
+      "surface",
+      "pattern",
+      "technique_ids",
+      "tactics",
+      "status",
+      "catalog_status",
+      "source_type",
+      "safety_level",
+      "provider_execution_classification",
+      "bas_suitability_score"
+    ],
+    "record_keys": [
+      "attack_techniques",
+      "attackiq_support",
+      "bas_suitability_score",
+      "catalog_contract_version",
+      "catalog_status",
+      "catalog_tags",
+      "cleanup_required",
+      "cloud_provider",
+      "cost_risk",
+      "coverage_type",
+      "destructive",
+      "domain",
+      "id",
+      "name",
+      "pattern",
+      "platforms",
+      "production_safe",
+      "provider_actions",
+      "provider_execution_classification",
+      "references",
+      "required_permissions",
+      "safety_level",
+      "scenario_type",
+      "source_domain",
+      "source_path",
+      "source_type",
+      "status",
+      "surface",
+      "telemetry_sources"
+    ],
+    "technique_keys": [
+      "providers",
+      "scenario_count",
+      "scenario_ids",
+      "tactics",
+      "technique_id",
+      "technique_name"
+    ]
+  },
+  "common_records": {
+    "csv_headers": [
+      "id",
+      "name",
+      "provider_extra",
+      "provider_nested"
+    ],
+    "preferred_fields": [
+      "id",
+      "name"
+    ],
+    "required_record_keys": [
+      "id",
+      "name"
+    ],
+    "synthetic_input": [
+      {
+        "id": "provider-record-1",
+        "name": "Synthetic provider record",
+        "provider_extra": "retained",
+        "provider_nested": {
+          "future": true
+        }
+      }
+    ]
+  },
+  "dedicated_dry_run_call_plan": {
+    "json_body": {
+      "name": "Synthetic mutation"
+    },
+    "operation_id": "v1_fixture_create",
+    "path_params": {
+      "id": "fixture-id"
+    },
+    "query_params": {
+      "mode": "preview"
+    }
+  },
+  "exports": {
+    "field_orders": {
+      "assessments": [
+        "id",
+        "name",
+        "assessment_type",
+        "assessment_type_id",
+        "assessment_type_name",
+        "status",
+        "created",
+        "modified"
+      ],
+      "scenarios": [
+        "id",
+        "name",
+        "scenario_type",
+        "description",
+        "created",
+        "modified",
+        "cancellable",
+        "capabilities",
+        "last_updated",
+        "failure_criteria",
+        "prerequisites",
+        "prevention_criteria",
+        "scenario_tags",
+        "supported_platform"
+      ],
+      "template_rows": [
+        "template_id",
+        "template_name",
+        "project_name",
+        "template_type_id",
+        "template_type_name",
+        "scenario_id",
+        "scenario_name",
+        "scenario_type",
+        "test_id",
+        "test_name"
+      ],
+      "templates": [
+        "id",
+        "template_name",
+        "project_name",
+        "project_template_type",
+        "project_template_type_id",
+        "project_template_type_name",
+        "num_tests",
+        "num_scenarios",
+        "is_av2_compatible",
+        "modified"
+      ],
+      "tests": [
+        "id",
+        "name",
+        "description",
+        "project",
+        "runnable",
+        "scheduled_count",
+        "created",
+        "modified",
+        "use_hosted_agent",
+        "use_pool_agent",
+        "using_default_assets",
+        "using_default_schedule",
+        "order",
+        "has_scenario_modules"
+      ]
+    }
+  },
+  "extension_policy": {
+    "raw_provider_records": "allow-additional-fields",
+    "repository_owned_envelopes": "exact-keys"
+  },
+  "generic_call_formats": {
+    "csv": "id,name,provider_extra\n1,alpha,retained\n",
+    "pretty_json": "{\n  \"id\": \"provider-record-1\",\n  \"provider_extra\": {\n    \"future\": true\n  }\n}\n",
+    "raw": "synthetic raw response"
+  },
+  "join": {
+    "csv_headers": {
+      "assessment_scenario.csv": [
+        "assessment_id",
+        "assessment_name",
+        "scenario_id",
+        "scenario_name",
+        "scenario_technique",
+        "scenario_supported_platforms",
+        "scenario_capabilities"
+      ],
+      "assessment_scenario_issue.csv": [
+        "assessment_id",
+        "assessment_name",
+        "scenario_id",
+        "scenario_name",
+        "scenario_technique",
+        "scenario_supported_platforms",
+        "scenario_capabilities",
+        "issue_id",
+        "issue_iid",
+        "issue_title",
+        "issue_url",
+        "issue_state",
+        "issue_created_at_utc",
+        "issue_updated_at_utc",
+        "issue_technique_token",
+        "labels_raw",
+        "issue_techniques",
+        "issue_tactics",
+        "issue_detection_strategy_ids",
+        "issue_tools",
+        "issue_csf"
+      ],
+      "issue_scenario.csv": [
+        "issue_id",
+        "issue_iid",
+        "issue_title",
+        "issue_url",
+        "issue_state",
+        "issue_created_at_utc",
+        "issue_updated_at_utc",
+        "scenario_id",
+        "scenario_name",
+        "scenario_technique",
+        "issue_technique_token",
+        "labels_raw",
+        "issue_techniques",
+        "issue_tactics",
+        "issue_detection_strategy_ids",
+        "issue_tools",
+        "issue_csf"
+      ],
+      "issues_unmapped.csv": [
+        "issue_id",
+        "issue_iid",
+        "issue_title",
+        "issue_url",
+        "issue_state",
+        "reason",
+        "labels_raw",
+        "issue_techniques"
+      ]
+    },
+    "hash_entry_keys": [
+      "bytes",
+      "name",
+      "sha256"
+    ],
+    "det_pipeline": {
+      "apply_report_keys": [
+        "apply_requested",
+        "assessment_plan_total",
+        "attackiq_assessments",
+        "dry_run",
+        "findings_total",
+        "gitlab_updates",
+        "issues_total",
+        "patch_plan_total"
+      ],
+      "assessment_plan_item_keys": [
+        "assessment_name",
+        "det_id",
+        "issue_iids",
+        "scenario_ids",
+        "tool"
+      ],
+      "csv_headers": {
+        "assessment_plan.csv": [
+          "tool",
+          "det_id",
+          "assessment_name",
+          "issue_iids",
+          "scenario_ids"
+        ],
+        "issue_to_scenario_candidates.csv": [
+          "iid",
+          "rank",
+          "scenario_id",
+          "scenario_name",
+          "score"
+        ],
+        "issues_findings.csv": [
+          "iid",
+          "title",
+          "finding"
+        ]
+      },
+      "item_envelope_keys": [
+        "items"
+      ],
+      "manifest_entry_keys": [
+        "name",
+        "sha256"
+      ],
+      "manifest_keys": [
+        "inputs",
+        "outputs",
+        "schema_version"
+      ],
+      "normalized_issue_keys": [
+        "description",
+        "det_id",
+        "env_tags",
+        "iid",
+        "labels_raw",
+        "matched_scenarios",
+        "os_tags",
+        "platform_tags",
+        "tactic_tokens",
+        "technique_tokens",
+        "title",
+        "tool"
+      ],
+      "output_files": [
+        "apply_report.json",
+        "assessment_plan.csv",
+        "assessment_plan.json",
+        "attackiq_create_requests.ndjson",
+        "gitlab_description_previews.jsonl",
+        "gitlab_patch_plan.json",
+        "issue_to_scenario_candidates.csv",
+        "issues_findings.csv",
+        "issues_normalized.jsonl",
+        "manifest.json",
+        "recommendations.json",
+        "technique_reconciliation.json"
+      ],
+      "patch_plan_item_keys": [
+        "add_labels",
+        "description",
+        "description_changed",
+        "final_labels",
+        "findings",
+        "iid",
+        "project_id",
+        "remove_labels"
+      ],
+      "preview_keys": [
+        "description_original",
+        "description_rewritten",
+        "iid"
+      ],
+      "reconciliation_item_keys": [
+        "candidates",
+        "confidence",
+        "iid",
+        "needs_review",
+        "source",
+        "technique_final"
+      ],
+      "recommendation_keys": [
+        "scenario_id",
+        "scenario_name",
+        "score",
+        "score_breakdown"
+      ],
+      "recommendations_item_keys": [
+        "iid",
+        "recommendations"
+      ],
+      "request_keys": [
+        "operation",
+        "payload"
+      ],
+      "request_payload_keys": [
+        "det_id",
+        "name",
+        "scenario_ids"
+      ],
+      "score_breakdown_keys": [
+        "platform_penalty",
+        "title_overlap"
+      ]
+    },
+    "manifest_keys": [
+      "created_utc",
+      "inputs",
+      "joiner_version",
+      "options",
+      "outputs",
+      "python_version",
+      "schema_version"
+    ],
+    "manifest_option_keys": [
+      "fail_on_malformed_scenario_technique",
+      "fail_on_missing_scenario",
+      "issue_label_delimiter",
+      "list_delimiter"
+    ],
+    "output_files": [
+      "assessment_scenario.csv",
+      "issue_scenario.csv",
+      "assessment_scenario_issue.csv",
+      "issues_unmapped.csv",
+      "manifest.json"
+    ]
+  },
+  "scenario_wizard_plans": {
+    "create": {
+      "action_keys": {
+        "create_output_directory": [
+          "name",
+          "path"
+        ],
+        "create_virtualenv": [
+          "argv",
+          "name"
+        ],
+        "install_runtime_dependencies": [
+          "argv",
+          "name"
+        ],
+        "run_scenario_wizard": [
+          "argument_source",
+          "argv",
+          "cwd",
+          "name"
+        ],
+        "use_runtime_python_directory": [
+          "name",
+          "runtime_path",
+          "site_packages_path"
+        ],
+        "validate_configuration": [
+          "name",
+          "path"
+        ],
+        "validate_runtime_bundle": [
+          "name",
+          "path"
+        ]
+      },
+      "keys": [
+        "command",
+        "configuration",
+        "dry_run",
+        "errors",
+        "output",
+        "planned_actions",
+        "ready",
+        "runtime_bundle",
+        "warnings"
+      ]
+    },
+    "package": {
+      "action_keys": {
+        "collect_target_packages": [
+          "name",
+          "path"
+        ],
+        "create_virtualenv": [
+          "argv",
+          "name"
+        ],
+        "install_package_dependencies": [
+          "argv",
+          "name"
+        ],
+        "run_package": [
+          "argv",
+          "cwd",
+          "name"
+        ],
+        "validate_generated_scenario": [
+          "name",
+          "path"
+        ]
+      },
+      "keys": [
+        "command",
+        "dry_run",
+        "errors",
+        "planned_actions",
+        "ready",
+        "scenario",
+        "warnings"
+      ]
+    },
+    "runtime_prepare": {
+      "action_keys": {
+        "copy_runtime_bundle": [
+          "destination",
+          "name",
+          "replace_existing",
+          "source"
+        ],
+        "create_cache_directory": [
+          "name",
+          "path"
+        ],
+        "validate_destination_bundle": [
+          "name",
+          "path"
+        ],
+        "validate_source_bundle": [
+          "name",
+          "path"
+        ]
+      },
+      "keys": [
+        "cache_dir",
+        "command",
+        "destination",
+        "dry_run",
+        "errors",
+        "planned_actions",
+        "ready",
+        "source",
+        "warnings"
+      ]
+    },
+    "runtime_prepare_image_tar": {
+      "action_keys": {
+        "create_cache_directory": [
+          "name",
+          "path"
+        ],
+        "extract_selected_runtime_files": [
+          "destination",
+          "name",
+          "replace_existing",
+          "requirements_path",
+          "runtime_root",
+          "wheelhouse_path"
+        ],
+        "inspect_image_tar": [
+          "name",
+          "path"
+        ],
+        "validate_destination_bundle": [
+          "name",
+          "path"
+        ]
+      },
+      "keys": [
+        "cache_dir",
+        "command",
+        "destination",
+        "dry_run",
+        "errors",
+        "planned_actions",
+        "ready",
+        "source",
+        "warnings"
+      ]
+    }
+  },
+  "schema_version": 1,
+  "tui_exports": {
+    "field_orders": {
+      "assessments": [
+        "id",
+        "name",
+        "assessment_type",
+        "assessment_type_id",
+        "assessment_type_name",
+        "status",
+        "created",
+        "modified"
+      ],
+      "assets": [
+        "id",
+        "hostname",
+        "activity_type",
+        "deployment_state",
+        "ipv4_address",
+        "ipv6_address",
+        "modified"
+      ],
+      "results_group": [
+        "count",
+        "join_key",
+        "result_summary_id",
+        "scenario_job_id",
+        "source"
+      ],
+      "scenarios": [
+        "id",
+        "name",
+        "scenario_type",
+        "description",
+        "created",
+        "modified"
+      ],
+      "settings": [
+        "key",
+        "value",
+        "source",
+        "category"
+      ],
+      "tests": [
+        "id",
+        "name",
+        "description",
+        "project",
+        "runnable",
+        "scheduled_count",
+        "created",
+        "modified",
+        "use_hosted_agent",
+        "use_pool_agent",
+        "using_default_assets",
+        "using_default_schedule",
+        "order",
+        "has_scenario_modules"
+      ]
+    },
+    "paged_path": "exports/scenarios_page2_20260721T120000Z.json",
+    "unpaged_path": "exports/settings_20260721T120000Z.csv"
+  }
+}

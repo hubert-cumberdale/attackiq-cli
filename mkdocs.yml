@@ -1,0 +1,68 @@
+site_name: AttackIQ CLI Docs
+site_description: Public operator and architecture documentation for AttackIQ CLI workflows.
+site_author: AttackIQ CLI Maintainer
+docs_dir: docs
+site_dir: site
+use_directory_urls: true
+
+validation:
+  nav:
+    omitted_files: ignore
+
+theme:
+  name: readthedocs
+  highlightjs: true
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - fenced_code
+  - tables
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Quickstart: wiki/getting-started.md
+      - Authentication: wiki/authentication.md
+      - Production Operator Runbook: PRODUCTION_OPERATOR_RUNBOOK.md
+      - Configuration Backup Runbook: CONFIGURATION_BACKUP_RUNBOOK.md
+      - Backup Domain Intake: BACKUP_DOMAIN_INTAKE_OBSERVABLE_FIELD_MAPPINGS.md
+      - Public Release: PUBLIC_RELEASE.md
+      - Release-Prep Evidence Checklist: RELEASE_PREP_EVIDENCE_CHECKLIST.md
+      - Hash-Pinned Lock Evaluation: HASH_PINNED_LOCK_EVALUATION.md
+      - Artifactory Delivery: ARTIFACTORY_DELIVERY.md
+      - No-Artifactory Evidence Template: NO_ARTIFACTORY_RELEASE_EVIDENCE_TEMPLATE.md
+      - Release Audit Wrapper Evaluation: RELEASE_AUDIT_WRAPPER_EVALUATION.md
+      - Signing And Attestation: SIGNING_ATTESTATION.md
+      - Post-Download Package Evidence Checklist: POST_DOWNLOAD_PACKAGE_EVIDENCE_CHECKLIST.md
+      - Screenshots: wiki/screenshots.md
+  - Workflows:
+      - AttackIQ Assessments: wiki/attackiq-assessment-workflows.md
+      - Enterprise BAS: wiki/enterprise-bas-workflows.md
+      - Scenario Upload: playbooks/scenario-upload.md
+  - Reference:
+      - CLI Architecture: ARCHITECTURE.md
+      - Architecture Standards: ARCHITECTURE_STANDARDS.md
+      - Catalog Contract: CATALOG_CONTRACT.md
+      - Integration Boundaries: INTEGRATION_BOUNDARIES.md
+      - AIQ Assist MCP Contract: AIQ_ASSIST_MCP_CONTRACT.md
+      - AIQ Assist MCP Provider Intake: AIQ_ASSIST_MCP_PROVIDER_INTAKE.md
+      - AIQ Assist MCP Adapter Design: AIQ_ASSIST_MCP_ADAPTER_DESIGN.md
+      - Integration Card Template: integration-cards/AIQ_INTEGRATION.md
+      - AIQ Assist MCP Integration Card: integration-cards/AIQ_ASSIST_MCP.md
+      - Production Readiness: PRODUCTION_READINESS.md
+      - GA Stable Contract Inventory: GA_STABLE_CONTRACT.md
+      - 2026-07-08 Project Direction Review: REVIEW_2026-07-08_PROJECT_DIRECTION.md
+      - Read-Only Wrapper Inventory: READ_ONLY_WRAPPER_INVENTORY.md
+      - Detection Rule Wrapper Review: DETECTION_RULE_WRAPPER_REVIEW.md
+      - Read-Only Wrapper Redaction And Retention Review: READ_ONLY_WRAPPER_REDACTION_RETENTION_REVIEW.md
+      - 2026-07-17 Read-Only Wrapper Selection Review: READ_ONLY_WRAPPER_2026-07-17_SELECTION_REVIEW.md
+      - TUI Dry-Run Preview Design: TUI_DRY_RUN_PREVIEW_DESIGN.md
+      - Review Standards: REVIEW_STANDARDS.md
+      - Regression Testing Strategy: REGRESSION_TESTING_STRATEGY.md
+      - Scenario Wizard Local Create: SCENARIO_WIZARD_LOCAL_CREATE.md
+      - Current State: STATE.md
+      - Roadmap: ROADMAP.md
+      - Governance: GOVERNANCE.md
